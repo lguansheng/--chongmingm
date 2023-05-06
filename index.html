@@ -1,0 +1,54 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文件批量重命名工具</title>
+	<!-- 引入 Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta charset="utf-8">
+</head>
+<body>
+<div class="container">
+	<h1>文件批量重命名工具</h1>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				<div class="alert alert-{{ category }} alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form method="POST" action="{{ url_for('rename') }}">
+		<div class="form-group">
+			<label for="path">文件夹路径：</label>
+			<input type="text" class="form-control" id="path" name="path" placeholder="请输入文件夹路径" required>
+		</div>
+		<div class="form-group">
+			<label for="name">文件名：</label>
+			<input type="text" class="form-control" id="name" name="name" placeholder="请输入文件名" required>
+		</div>
+		<div class="form-group">
+			<label for="start_number">开始编号：</label>
+			<input type="number" class="form-control" id="start_number" name="start_number" placeholder="请输入开始编号" required>
+		</div>
+		<div class="form-group">
+			<label for="file_type">文件类型：</label>
+			<input type="text" class="form-control" id="file_type" name="file_type" placeholder="请输入文件类型" required>
+		</div>
+		<button type="submit" class="btn btn-primary">开始重命名</button>
+	</form>
+</div>
+<footer class="footer mt-auto py-3">
+      <div class="container">
+          <span class="text-muted">© 2023 文件批量重命名leoguansheng</span>
+      </div>
+</footer>
+<!-- 引入 jQuery 和 Bootstrap JS -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
